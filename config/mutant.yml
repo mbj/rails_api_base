@@ -1,0 +1,15 @@
+---
+usage: opensource
+environment_variables:
+  # Avoid a macosx specific bug in their libpq that fails on forks.
+  PGGSECENCMODE: disable
+  RAILS_ENV: test
+integration:
+  name: rspec
+requires:
+- ./config/environment
+hooks:
+- ./config/mutant_hooks.rb
+matcher:
+  subjects:
+  - source:app/**/*.rb
